@@ -15,6 +15,7 @@
 		F92258CC1CE57C1200A49242 /* EmoticonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258CB1CE57C1200A49242 /* EmoticonTests.swift */; };
 		F92258D71CE57C1300A49242 /* EmoticonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258D61CE57C1300A49242 /* EmoticonUITests.swift */; };
 		F92258E61CE5C7D300A49242 /* EmoticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258E51CE5C7D300A49242 /* EmoticonViewController.swift */; };
+		F92258E81CEB015700A49242 /* Emoticons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F92258E71CEB015700A49242 /* Emoticons.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		F92258D61CE57C1300A49242 /* EmoticonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonUITests.swift; sourceTree = "<group>"; };
 		F92258D81CE57C1300A49242 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F92258E51CE5C7D300A49242 /* EmoticonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonViewController.swift; sourceTree = "<group>"; };
+		F92258E71CEB015700A49242 /* Emoticons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emoticons.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		F92258E41CE5C7B500A49242 /* EmoticonController */ = {
 			isa = PBXGroup;
 			children = (
+				F92258E71CEB015700A49242 /* Emoticons.bundle */,
 				F92258E51CE5C7D300A49242 /* EmoticonViewController.swift */,
 			);
 			path = EmoticonController;
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F92258C11CE57C1200A49242 /* LaunchScreen.storyboard in Resources */,
+				F92258E81CEB015700A49242 /* Emoticons.bundle in Resources */,
 				F92258BE1CE57C1200A49242 /* Assets.xcassets in Resources */,
 				F92258BC1CE57C1200A49242 /* Main.storyboard in Resources */,
 			);
@@ -505,6 +509,7 @@
 				F92258DD1CE57C1300A49242 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F92258DE1CE57C1300A49242 /* Build configuration list for PBXNativeTarget "EmoticonTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +518,7 @@
 				F92258E01CE57C1300A49242 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F92258E11CE57C1300A49242 /* Build configuration list for PBXNativeTarget "EmoticonUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +527,7 @@
 				F92258E31CE57C1300A49242 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
