@@ -53,6 +53,8 @@ class EmoticonViewController: UIViewController {
         return collection
     }()
     
+    private lazy var emoticonPackages : [EmoticonPackage] = EmoticonPackage.loadAllPacakges()!
+    
     private lazy var toolBar : UIToolbar = {
         let toolbar = UIToolbar()
         toolbar.backgroundColor = UIColor.whiteColor()
@@ -79,18 +81,40 @@ extension EmoticonViewController:UICollectionViewDelegate,UICollectionViewDataSo
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(customCollectionViewCellIdentifer, forIndexPath: indexPath) as! CustomCollectionViewCell
         cell.backgroundColor = (indexPath.item % 2 == 0) ? UIColor.redColor() : UIColor.greenColor()
+        let package = emoticonPackages[indexPath.section]
+        cell.emotion = package.emoticons![indexPath.row]
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 21 * 4
+        return emoticonPackages[section].emoticons!.count ?? 0
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return emoticonPackages.count
     }
 }
 
 //Mark: -CustomCollectionViewCell
 class CustomCollectionViewCell : UICollectionViewCell
 {
+    var emotion : Emoticon?{
+        didSet{
+            if emotion?.chs != nil{
+                iconButton.setImage(UIImage(contentsOfFile: (emotion?.imagePath)!), forState: UIControlState.Normal)
+            }else{
+                //清空，防止重用的时候会出现emoji表情跟其他表情重叠
+                iconButton.setImage(nil, forState: UIControlState.Normal)
+            }
+            
+            // 设置emoji表情
+            // 注意: 加上??可以防止重用
+            iconButton.setTitle(emotion?.emojiStr ?? "", forState: UIControlState.Normal)
+            iconButton.titleLabel?.font = UIFont.systemFontOfSize(32)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()

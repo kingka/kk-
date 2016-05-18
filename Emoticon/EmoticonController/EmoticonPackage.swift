@@ -26,6 +26,7 @@ class EmoticonPackage: NSObject {
         for d in packageArray
         {
             let package = EmoticonPackage(id: d["id"]! as! String)
+            package.loadEmoticons()
             packages.append(package)
         }
         return packages
@@ -67,11 +68,27 @@ class Emoticon : NSObject {
     /// 表情对应的文字
     var chs: String?
     /// 表情对应的图片
-    var png: String?
+    var png: String?{
+        didSet{
+            imagePath = (EmoticonPackage.emoticonsBundlePath().stringByAppendingPathComponent(id!) as NSString).stringByAppendingPathComponent(png!)
+        }
+    }
     /// emoji表情对应的十六进制字符串
-    var code: String?
+    var code: String?{
+        didSet{
+            let scanner = NSScanner(string: code!)
+            var result : UInt32 = 0
+            scanner.scanHexInt(&result)
+            emojiStr = "\(Character(UnicodeScalar(result)))"
+        }
+    }
+    
+    var emojiStr : String?
     /// 当前表情对应的文件夹
     var id: String?
+    
+    ///表情图片path
+    var imagePath : String?
     
     init(dict : [String : String], id : String) {
         super.init()
