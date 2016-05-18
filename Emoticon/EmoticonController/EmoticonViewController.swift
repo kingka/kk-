@@ -14,6 +14,11 @@ class EmoticonViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        let emoticons = EmoticonPackage.loadAllPacakges()
+        for e in emoticons!
+        {
+            print(e.id)
+        }
     }
 
     func setupUI(){
