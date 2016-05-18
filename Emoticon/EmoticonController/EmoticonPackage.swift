@@ -27,6 +27,7 @@ class EmoticonPackage: NSObject {
         {
             let package = EmoticonPackage(id: d["id"]! as! String)
             package.loadEmoticons()
+            package.appendEmptyEmoticons()
             packages.append(package)
         }
         return packages
@@ -37,12 +38,35 @@ class EmoticonPackage: NSObject {
         group_name_cn = dict!["group_name_cn"] as? String
         let dictArray = dict!["emoticons"] as! [[String : String]]
         emoticons = [Emoticon]()
+        var index = 0
         for dict in dictArray
         {
+            //使每一页最后一个btn 为 删除按钮
+            if (index == 20){
+                emoticons?.append(Emoticon(isDeleteBtn: true))
+                index = 0
+            }
             let emoticon = Emoticon(dict: dict, id: self.id!)
             emoticons?.append(emoticon)
+            index++
         }
-        
+    }
+    
+    func appendEmptyEmoticons(){
+        //取余，如果count 不为0 ，那么就 补全 20 - count 的数量，然后再添加一个delete btn
+        let count = emoticons!.count % 21
+        print("count = \(count)")
+        //因为loadEmoticons（）方法里面已经控制了第21个肯定是delete
+        if count > 0
+        {
+            for _ in count..<20
+            {
+                emoticons?.append(Emoticon(isDeleteBtn: false))
+            }
+            
+            emoticons?.append(Emoticon(isDeleteBtn: true))
+        }
+
     }
     
     
@@ -89,6 +113,13 @@ class Emoticon : NSObject {
     
     ///表情图片path
     var imagePath : String?
+    
+    var isDeleteBtn : Bool = false
+    
+    init(isDeleteBtn : Bool) {
+        super.init()
+        self.isDeleteBtn = isDeleteBtn
+    }
     
     init(dict : [String : String], id : String) {
         super.init()

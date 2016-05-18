@@ -14,11 +14,7 @@ class EmoticonViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        let emoticons = EmoticonPackage.loadAllPacakges()
-        for e in emoticons!
-        {
-            print(e.id)
-        }
+
     }
 
     func setupUI(){
@@ -83,6 +79,11 @@ extension EmoticonViewController:UICollectionViewDelegate,UICollectionViewDataSo
         cell.backgroundColor = (indexPath.item % 2 == 0) ? UIColor.redColor() : UIColor.greenColor()
         let package = emoticonPackages[indexPath.section]
         cell.emotion = package.emoticons![indexPath.row]
+        
+        if(cell.emotion!.isDeleteBtn){
+            cell.iconButton.setImage(UIImage(named: "compose_emotion_delete"), forState: UIControlState.Normal)
+            cell.iconButton.setImage(UIImage(named: "compose_emotion_delete_highlighted"), forState: UIControlState.Highlighted)
+        }
         return cell
     }
     
