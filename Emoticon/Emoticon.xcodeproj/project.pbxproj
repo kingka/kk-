@@ -17,6 +17,7 @@
 		F92258E61CE5C7D300A49242 /* EmoticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258E51CE5C7D300A49242 /* EmoticonViewController.swift */; };
 		F92258E81CEB015700A49242 /* Emoticons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F92258E71CEB015700A49242 /* Emoticons.bundle */; };
 		F92258EA1CEC0EE700A49242 /* EmoticonPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258E91CEC0EE700A49242 /* EmoticonPackage.swift */; };
+		F92258EC1CEEDE4D00A49242 /* EmoticonTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258EB1CEEDE4D00A49242 /* EmoticonTextAttachment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		F92258E51CE5C7D300A49242 /* EmoticonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonViewController.swift; sourceTree = "<group>"; };
 		F92258E71CEB015700A49242 /* Emoticons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emoticons.bundle; sourceTree = "<group>"; };
 		F92258E91CEC0EE700A49242 /* EmoticonPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonPackage.swift; sourceTree = "<group>"; };
+		F92258EB1CEEDE4D00A49242 /* EmoticonTextAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonTextAttachment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				F92258E71CEB015700A49242 /* Emoticons.bundle */,
 				F92258E51CE5C7D300A49242 /* EmoticonViewController.swift */,
 				F92258E91CEC0EE700A49242 /* EmoticonPackage.swift */,
+				F92258EB1CEEDE4D00A49242 /* EmoticonTextAttachment.swift */,
 			);
 			path = EmoticonController;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F92258EC1CEEDE4D00A49242 /* EmoticonTextAttachment.swift in Sources */,
 				F92258B91CE57C1200A49242 /* ViewController.swift in Sources */,
 				F92258E61CE5C7D300A49242 /* EmoticonViewController.swift in Sources */,
 				F92258EA1CEC0EE700A49242 /* EmoticonPackage.swift in Sources */,
