@@ -11,6 +11,18 @@ import UIKit
 let customCollectionViewCellIdentifer = "customCollectionViewCellIdentifer"
 class EmoticonViewController: UIViewController {
 
+    //定义一个闭包属性, 用于传递选中的表情模型
+    var emoticonsCallBack : (emoticon : Emoticon)->()
+    
+    init(emoticonsCallBack : (emoticon : Emoticon)->()){
+        self.emoticonsCallBack = emoticonsCallBack
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -35,6 +47,10 @@ class EmoticonViewController: UIViewController {
 
     }
     
+    func itemClick(item : UIBarButtonItem){
+        collectionV.scrollToItemAtIndexPath(NSIndexPath(forItem: 0, inSection: item.tag), atScrollPosition: UICollectionViewScrollPosition.Left, animated: false)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,11 +71,11 @@ class EmoticonViewController: UIViewController {
         let toolbar = UIToolbar()
         toolbar.backgroundColor = UIColor.whiteColor()
         var items = [UIBarButtonItem]()
-        let titles = ["最近","emoji","默认","浪小花"]
+        let titles = ["最近","默认","emoji","浪小花"]
         var index : Int = 0
         for title in titles
         {
-            let item = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+            let item = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: "itemClick:")
             item.tag = index++
             items.append(item)
             items.append(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil))
@@ -95,6 +111,12 @@ extension EmoticonViewController:UICollectionViewDelegate,UICollectionViewDataSo
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return emoticonPackages.count
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let emoticon = emoticonPackages[indexPath.section].emoticons![indexPath.item]
+        emoticonsCallBack(emoticon: emoticon)
+    }
 }
 
 //Mark: -CustomCollectionViewCell
@@ -125,6 +147,7 @@ class CustomCollectionViewCell : UICollectionViewCell
         contentView.addSubview(iconButton)
         iconButton.backgroundColor = UIColor.whiteColor()
         iconButton.frame = CGRectInset(contentView.bounds, 4, 4)
+        iconButton.userInteractionEnabled = false
     }
 
     private lazy var iconButton: UIButton = UIButton()

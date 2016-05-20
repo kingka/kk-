@@ -17,12 +17,21 @@ class EmoticonPackage: NSObject {
     var emoticons: [Emoticon]?
     
     class func loadAllPacakges()->[EmoticonPackage]?{
+        //packages 用来存放最后需要返回的值
+        var packages = [EmoticonPackage]()
+        
+        //初始化最近使用过的表情
+        let recentPackage = EmoticonPackage(id: "")
+        recentPackage.group_name_cn = "最近"
+        recentPackage.emoticons = [Emoticon]()
+        recentPackage.appendEmptyEmoticons()
+        packages.append(recentPackage)
+        
         let path = NSBundle.mainBundle().pathForResource("emoticons", ofType: "plist", inDirectory: "Emoticons.bundle")
         let dict = NSDictionary(contentsOfFile: path!)
         //packageArray的数据类型是字典数组 ([],[])
         let packageArray = dict!["packages"]  as! [[String:AnyObject]]
-        //packages 用来存放最后需要返回的值
-        var packages = [EmoticonPackage]()
+        
         for d in packageArray
         {
             let package = EmoticonPackage(id: d["id"]! as! String)
@@ -57,8 +66,8 @@ class EmoticonPackage: NSObject {
         let count = emoticons!.count % 21
         print("count = \(count)")
         //因为loadEmoticons（）方法里面已经控制了第21个肯定是delete
-        if count > 0
-        {
+       
+        
             for _ in count..<20
             {
                 emoticons?.append(Emoticon(isDeleteBtn: false))
@@ -67,7 +76,7 @@ class EmoticonPackage: NSObject {
             emoticons?.append(Emoticon(isDeleteBtn: true))
         }
 
-    }
+    
     
     
     func infoPlistPath() -> String{

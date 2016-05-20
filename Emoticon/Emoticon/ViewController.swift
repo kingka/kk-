@@ -27,8 +27,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    lazy var emoticonVC : EmoticonViewController = EmoticonViewController()
+    lazy var emoticonVC : EmoticonViewController = EmoticonViewController { (emoticon) -> () in
+        
+        if emoticon.emojiStr != nil
+        {
+            print(emoticon.emojiStr)
+            
+        }else if emoticon.png != nil
+        {
+            print(emoticon.png)
+        }
 
-    
+    }
+
 }
 
