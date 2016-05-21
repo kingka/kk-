@@ -41,4 +41,32 @@ extension UITextView
         }
 
     }
+    
+    func emoticonStr()->String{
+        var str = String()
+        //转成发送给服务器的str
+        attributedText.enumerateAttributesInRange(NSMakeRange(0, attributedText.length), options: NSAttributedStringEnumerationOptions(rawValue: 0)) { (objc, range, _) -> Void in
+            /*
+            // 遍历的时候传递给我们的objc是一个字典, 如果字典中的NSAttachment这个key有值
+            // 那么就证明当前是一个图片
+            print(objc["NSAttachment"])
+            // range就是纯字符串的范围
+            // 如果纯字符串中间有图片表情, 那么range就会传递多次
+            print(range)
+            let res = (self.customTextView.text as NSString).substringWithRange(range)
+            print(res)
+            print("++++++++++++++++++++++++++")
+            */
+            
+            if objc["NSAttachment"] != nil
+            {
+                let attatchment = objc["NSAttachment"] as! EmoticonTextAttachment
+                str += attatchment.chs!
+            }else{
+                str += (self.text as NSString).substringWithRange(range)
+            }
+        }
+       
+        return str
+    }
 }

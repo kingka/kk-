@@ -70,7 +70,7 @@ class EmoticonPackage: NSObject {
         
         let contains = emoticons!.contains(emoticon)
         
-        //如果没有，则先把delete 按钮移除
+        //如果没有包含，则先把delete 按钮移除
         if !contains
         {
             emoticons?.removeLast()
