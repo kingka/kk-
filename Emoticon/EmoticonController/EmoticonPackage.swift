@@ -16,6 +16,8 @@ class EmoticonPackage: NSObject {
     /// 当前组所有的表情对象
     var emoticons: [Emoticon]?
     
+    static let packageList : [EmoticonPackage] = EmoticonPackage.loadAllPacakges()!
+    
     class func loadAllPacakges()->[EmoticonPackage]?{
         //packages 用来存放最后需要返回的值
         var packages = [EmoticonPackage]()
@@ -39,6 +41,8 @@ class EmoticonPackage: NSObject {
             package.appendEmptyEmoticons()
             packages.append(package)
         }
+        
+        print("------only onece")
         return packages
     }
     

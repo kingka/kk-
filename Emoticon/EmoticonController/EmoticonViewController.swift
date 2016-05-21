@@ -65,7 +65,7 @@ class EmoticonViewController: UIViewController {
         return collection
     }()
     
-    private lazy var emoticonPackages : [EmoticonPackage] = EmoticonPackage.loadAllPacakges()!
+    private lazy var emoticonPackages : [EmoticonPackage] = EmoticonPackage.packageList
     
     private lazy var toolBar : UIToolbar = {
         let toolbar = UIToolbar()

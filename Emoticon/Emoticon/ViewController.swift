@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     // unowned 相当于OC中的 unsafe_unretained, 特点对象释放之后不会将变量设置为nil
     lazy var emoticonVC : EmoticonViewController = EmoticonViewController { [weak self](emoticon) -> () in
         
-        self!.textView.insertEmoticons(emoticon, fontSize: 20)
+        self!.textView.insertEmoticons(emoticon)
 
     }
 

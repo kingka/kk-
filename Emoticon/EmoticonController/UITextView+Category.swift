@@ -10,7 +10,7 @@ import UIKit
 
 extension UITextView
 {
-    func insertEmoticons(emoticon : Emoticon,fontSize : CGFloat){
+    func insertEmoticons(emoticon : Emoticon){
         //判断当前点击的是否是emoji表情
         if emoticon.emojiStr != nil
         {
@@ -20,14 +20,14 @@ extension UITextView
         }else if emoticon.png != nil
         {
             
-            let imgText = EmoticonTextAttachment.createImageText(emoticon, fontSize: fontSize)
+            let imgText = EmoticonTextAttachment.createImageText(emoticon, font: font!)
             //拿到textView content
             let textViewStr = NSMutableAttributedString(attributedString: attributedText)
             //insert emoticon to curse location
             let range = selectedRange
             textViewStr.replaceCharactersInRange(range, withAttributedString: imgText)
             //因为创建的字符串有自己默认的size ，所以需要改变，这里的NSMakeRange(range.location, 1)，之所以是1，是因为上面已经insert了表情进来，这里要改变字体，是因为如果前一个inser了图片，接着insert emoji 表情，如果不改字体大小，emoji表情的大小会不正确
-            textViewStr.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(fontSize), range: NSMakeRange(range.location, 1))
+            textViewStr.addAttribute(NSFontAttributeName, value: font!, range: NSMakeRange(range.location, 1))
             //替换 textView content
             attributedText = textViewStr
             //恢复光标位置
