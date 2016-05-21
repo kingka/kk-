@@ -34,6 +34,11 @@ extension UITextView
             // 两个参数: 第一个是指定光标所在的位置, 第二个参数是选中文本的个数
             selectedRange = NSMakeRange(range.location + 1, 0)
         }
+        
+        //删除按钮
+        if emoticon.isDeleteBtn{
+            deleteBackward()
+        }
 
     }
 }

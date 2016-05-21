@@ -61,12 +61,45 @@ class EmoticonPackage: NSObject {
         }
     }
     
+    func appendCurrentUsedEmoticons(emoticon : Emoticon){
+        
+        //判断是否delete btn
+        if emoticon.isDeleteBtn{
+            return
+        }
+        
+        let contains = emoticons!.contains(emoticon)
+        
+        //如果没有，则先把delete 按钮移除
+        if !contains
+        {
+            emoticons?.removeLast()
+            //把 emoticon append 进来
+            emoticons?.append(emoticon)
+        }
+        
+        //通过 times 属性的使用次数进行排序
+        var result = emoticons?.sort({ (el1, el2) -> Bool in
+            el1.times > el2.times
+        })
+        
+        //把次数使用少的那个移除,然后再把delete加进来
+        if !contains
+        {
+            result?.removeLast()
+            result?.append(Emoticon(isDeleteBtn: true))
+        }
+
+        //重新指向
+        emoticons = result
+        
+        print(emoticons?.count)
+        
+    }
+    
     func appendEmptyEmoticons(){
         //取余，如果count 不为0 ，那么就 补全 20 - count 的数量，然后再添加一个delete btn
         let count = emoticons!.count % 21
-        print("count = \(count)")
-        //因为loadEmoticons（）方法里面已经控制了第21个肯定是delete
-       
         
             for _ in count..<20
             {
@@ -116,6 +149,8 @@ class Emoticon : NSObject {
         }
     }
     
+    ///使用次数
+    var times : Int = 0
     var emojiStr : String?
     /// 当前表情对应的文件夹
     var id: String?

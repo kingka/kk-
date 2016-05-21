@@ -115,6 +115,13 @@ extension EmoticonViewController:UICollectionViewDelegate,UICollectionViewDataSo
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let emoticon = emoticonPackages[indexPath.section].emoticons![indexPath.item]
+        //添加到最近使用
+        emoticon.times++
+        let package = emoticonPackages[0]
+        package.appendCurrentUsedEmoticons(emoticon)
+        //刷新数据
+        collectionView.reloadSections(NSIndexSet(index: 0))
+        //block回传
         emoticonsCallBack(emoticon: emoticon)
     }
 }
