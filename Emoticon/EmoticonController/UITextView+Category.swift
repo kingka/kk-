@@ -39,7 +39,9 @@ extension UITextView
         if emoticon.isDeleteBtn{
             deleteBackward()
         }
-
+        
+        // 自己主动促发textViewDidChange方法,如果有placeholder,点击表情不会消失那些提示，所以需要主动触发
+        delegate?.textViewDidChange!(self)
     }
     
     func emoticonStr()->String{
